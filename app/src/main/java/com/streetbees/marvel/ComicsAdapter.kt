@@ -11,6 +11,9 @@ import com.bumptech.glide.Glide
 import com.streetbees.marvel.bo.ComicsWrapper
 import kotlinx.android.synthetic.main.comics_item.view.*
 import org.jetbrains.anko.intentFor
+import android.util.DisplayMetrics
+
+
 
 
 /**
@@ -39,6 +42,13 @@ class ComicsAdapter :
         }
       }
       view.title.text = comic.title
+
+      val displayMetrics = DisplayMetrics()
+      (view.context as  Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
+      val width = displayMetrics.widthPixels
+
+      val newWidth = width / view.context.resources.getInteger(R.integer.span)
+      view.layoutParams = RecyclerView.LayoutParams(newWidth,(newWidth*1.7).toInt())
 
     }
   }
