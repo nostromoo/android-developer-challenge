@@ -11,8 +11,9 @@ import retrofit2.http.Query
  */
 interface MarvelApi {
 
-@GET("v1/public/comics")
-fun getMarvelComics(@Query("ts")            ts : String,
-                    @Query("apikey")        apikey : String = BuildConfig.PUBLIC_KEY,
-                    @Query("hash")          hash : String) : Observable<ComicsWrapper>
+  @GET("v1/public/comics")
+  fun getMarvelComics(@Query("ts")            ts : String,
+                      @Query("apikey")        apikey : String = BuildConfig.PUBLIC_KEY,
+                      @Query("hash")          hash : String,
+                      @Query("offset")          offset : Int) : Observable<ComicsWrapper>
 }

@@ -31,10 +31,10 @@ class ComicsServices{
       marvelAPI = retrofit?.create(MarvelApi::class.java)
     }
 
-    fun getComics() : Observable<ComicsWrapper>?
+    fun getComics(offset : Int = 0) : Observable<ComicsWrapper>?
     {
       val ts = System.currentTimeMillis().toString()
-      return marvelAPI?.getMarvelComics(ts = ts, hash ="$ts${BuildConfig.PRIVATE_KEY}${BuildConfig.PUBLIC_KEY}".md5())
+      return marvelAPI?.getMarvelComics(ts = ts, hash ="$ts${BuildConfig.PRIVATE_KEY}${BuildConfig.PUBLIC_KEY}".md5(), offset =offset)
     }
   }
 }

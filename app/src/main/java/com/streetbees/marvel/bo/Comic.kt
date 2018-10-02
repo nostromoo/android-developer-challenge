@@ -9,7 +9,7 @@ import java.io.Serializable
 data class ComicsWrapper( @Expose val data : ComicsList)
 {
   data class ComicsList( @Expose val count : Int,
-                         @Expose val results : List<Comic>)
+                         @Expose val results : ArrayList<Comic>)
   {
     data class Comic( @Expose val title : String?,
                       @Expose val thumbnail : Image?,

@@ -2,7 +2,6 @@ package com.streetbees.marvel
 
 import android.app.Activity
 import android.app.ActivityOptions
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.Pair
 import android.view.LayoutInflater
@@ -17,8 +16,10 @@ import org.jetbrains.anko.intentFor
 /**
  * Created by Romain on 26/08/2018.
  */
-class ComicsAdapter(private val comicsWrapper: ComicsWrapper) :
+class ComicsAdapter :
     RecyclerView.Adapter<ComicsAdapter.ComicViewHolder>() {
+
+  private var comics :  ArrayList<ComicsWrapper.ComicsList.Comic> = arrayListOf()
 
   class ComicViewHolder(val view: View) : RecyclerView.ViewHolder(view){
 
@@ -40,12 +41,11 @@ class ComicsAdapter(private val comicsWrapper: ComicsWrapper) :
       view.title.text = comic.title
 
     }
-
   }
 
   override fun onBindViewHolder(holder: ComicViewHolder, position: Int)
   {
-    holder.bind(comicsWrapper.data.results[position])
+    holder.bind(comics[position])
   }
 
   override fun onCreateViewHolder(parent: ViewGroup,
@@ -56,5 +56,10 @@ class ComicsAdapter(private val comicsWrapper: ComicsWrapper) :
   }
 
 
-  override fun getItemCount() = comicsWrapper.data.count
+  override fun getItemCount() = comics.size
+
+  fun addItems(comics : List<ComicsWrapper.ComicsList.Comic>) {
+    this.comics.addAll(comics)
+    notifyDataSetChanged()
+  }
 }
